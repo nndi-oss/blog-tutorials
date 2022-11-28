@@ -1,0 +1,19 @@
+version: "3"
+services:
+  server:
+    build: ./
+    networks:
+      - nginx-cpanel
+    links:
+      - "cpanel-service:nginx-cpanel"
+    ports:
+      - "80:80"
+  cpanel-service:
+    build: ./cpanel/
+    ports:
+      - "2083:2083"
+    networks:
+      - nginx-cpanel
+
+networks:
+  nginx-cpanel: {}
